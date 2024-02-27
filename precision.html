@@ -37,13 +37,15 @@
   </body>
   <script>
     let stopTime;
+    let seconds = 5;
 
     function startTime() {
-      for (let i = 0; i < 5; i++) {
+      seconds = Math.floor(Math.random() * 9) + 2;
+      for (let i = 0; i < seconds; i++) {
         setTimeout(() => {
           const countdownEl = document.getElementById("counter");
           countdownEl.textContent = i;
-        }, (4 - i) * 1000);
+        }, (seconds - i) * 1000);
       }
 
       setTimeout(() => {
@@ -55,7 +57,7 @@
           const timeDifference = actualStopTime - stopTime;
           targetEl.textContent = `Time was ${timeDifference}`;
         }
-      }, 4000);
+      }, seconds * 1000);
     }
 
     function recordTime() {
