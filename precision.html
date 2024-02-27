@@ -25,7 +25,9 @@
       </div>
       <div class="row mt-4">
         <div class="col-12">
-          <button class="btn btn-success">Start timer</button>
+          <button class="btn btn-success" onclick="startTime()">
+            Start timer
+          </button>
           <button class="btn btn-danger" onclick="recordTime()">
             Stop timer
           </button>
@@ -35,6 +37,26 @@
   </body>
   <script>
     let stopTime;
+
+    function startTime() {
+      for (let i = 0; i < 5; i++) {
+        setTimeout(() => {
+          const countdownEl = document.getElementById("counter");
+          countdownEl.textContent = i;
+        }, (4 - i) * 1000);
+      }
+
+      setTimeout(() => {
+        const targetEl = document.getElementById("target");
+        if (!stopTime) {
+          targetEl.textContent = "Too slow";
+        } else {
+          const actualStopTime = Date.now();
+          const timeDifference = actualStopTime - stopTime;
+          targetEl.textContent = `Time was ${timeDifference}`;
+        }
+      }, 4000);
+    }
 
     function recordTime() {
       stopTime = Date.now();
